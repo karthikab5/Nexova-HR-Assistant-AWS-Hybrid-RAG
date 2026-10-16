@@ -1,0 +1,150 @@
+NEXOVA TECHNOLOGIES INC.
+ENGINEERING DEPLOYMENT & OPERATIONS RUNBOOK
+Version 6.3 | Engineering Platform Team
+Internal — Confidential
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DEPLOYMENT PROCESS
+
+1.1 Deployment Philosophy
+Nexova follows a continuous delivery model. We deploy to production multiple times per day from the main branch. All code must pass automated tests, security scans, and peer review before merging. No deployments are permitted during Friday 4 PM – Monday 9 AM (freeze window) without CPTO approval.
+
+1.2 Branch Strategy
+main: Production-ready code. Merges trigger automatic deployment to staging.
+release/vX.Y: Release candidates for major versions.
+feature/*: Feature branches — never directly merged to main. Always via PR.
+hotfix/*: Emergency patches. Must follow the hotfix process in Section 1.5.
+
+1.3 Pull Request Requirements
+All PRs require:
+- At least 2 approvals from code owners (CODEOWNERS file governs)
+- All CI checks passing (unit tests, integration tests, lint, SAST scan)
+- No decrease in test coverage below 80%
+- A linked Jira ticket in the PR description
+- Completed PR checklist (see PR template in GitHub)
+
+1.4 Standard Deployment Pipeline
+Step 1 — Build: GitHub Actions builds Docker image, runs unit + integration tests.
+Step 2 — Security Scan: Snyk scans dependencies; Semgrep runs SAST. Failures block deployment.
+Step 3 — Staging: Auto-deployed to staging.nexova.internal. Smoke tests run automatically.
+Step 4 — Canary: 5% of production traffic routes to new version for 30 minutes.
+Step 5 — Production: Full rollout if canary error rate < 0.1% and p99 latency within 10% of baseline.
+Step 6 — Monitoring: DataDog dashboards monitored for 60 minutes post-deploy. On-call engineer notified.
+
+1.5 Hotfix Process
+Hotfixes bypass the standard deploy window for critical production incidents.
+1. Create branch: hotfix/JIRA-TICKET-short-description
+2. Get approval from at least 1 senior engineer + engineering manager
+3. Deploy to staging and run smoke tests (minimum 15 minutes)
+4. Deploy to production with on-call engineer monitoring
+5. Open a post-incident review (PIR) ticket within 24 hours
+Hotfixes must be backported to main within 24 hours.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. INFRASTRUCTURE OVERVIEW
+
+2.1 Cloud Infrastructure
+Nexova runs entirely on AWS (primary) with GCP (analytics workloads).
+Primary AWS Region: us-east-1 (N. Virginia) | DR Region: us-west-2 (Oregon)
+AWS Account Structure: Nexova uses AWS Organizations with separate accounts for: Production, Staging, Development, Security, Shared Services, Logging.
+
+2.2 Core AWS Services in Use
+Compute: EKS (Kubernetes) for microservices, Lambda for event-driven functions.
+Storage: S3 (object storage), RDS Aurora (relational), DynamoDB (key-value), ElastiCache Redis (caching).
+Networking: VPC with private subnets, API Gateway, CloudFront CDN, Route 53.
+AI/ML: Amazon Bedrock (LLM inference), SageMaker (model training), Rekognition (image analysis).
+Observability: CloudWatch (metrics + logs), DataDog (APM), PagerDuty (alerting), AWS X-Ray (tracing).
+Security: AWS GuardDuty, Security Hub, WAF, Secrets Manager, KMS.
+
+2.3 Kubernetes (EKS)
+Cluster access: aws eks update-kubeconfig --name nexova-prod --region us-east-1
+Engineers have read-only access to prod cluster by default.
+Write access to prod requires just-in-time (JIT) approval via access.nexova.internal.
+All production workloads run in the nexova-prod namespace. Never deploy directly to prod — use the CI/CD pipeline.
+
+2.4 Database Access
+Production database access requires JIT approval. Never query production directly for non-incident purposes. Use the staging database for development and testing. Database credentials are managed in AWS Secrets Manager — never hardcode secrets.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. INCIDENT RESPONSE
+
+3.1 Severity Levels
+SEV1 — Critical: Full production outage or data breach. All hands. Incident bridge opened immediately.
+SEV2 — Major: Significant feature degradation affecting >20% of users. On-call + team lead.
+SEV3 — Minor: Limited user impact or degraded performance. On-call engineer handles.
+SEV4 — Low: Minor bug, no user impact. Standard ticket process.
+
+3.2 On-Call Rotation
+On-call schedule managed in PagerDuty. Each team runs a weekly on-call rotation. Primary on-call responds within 5 minutes to PagerDuty pages. Secondary on-call is backup if primary doesn't acknowledge within 10 minutes. On-call engineers receive a $300/week stipend for each on-call week.
+
+3.3 Incident Response Process
+1. Acknowledge the PagerDuty alert (prevents escalation)
+2. Assess severity using the criteria in Section 3.1
+3. For SEV1/SEV2: Open incident bridge at incident.nexova.internal
+4. Assign roles: Incident Commander, Technical Lead, Communications Lead
+5. Diagnose and mitigate (focus on restoring service, not root cause)
+6. Communicate status updates every 15 minutes via #incidents Slack channel
+7. Resolve and write PIR within 48 hours for SEV1, 5 days for SEV2
+
+3.4 Rollback Procedure
+If a deployment causes a SEV1 or SEV2 incident:
+1. Run: kubectl rollout undo deployment/<service-name> -n nexova-prod
+2. Verify rollback with smoke tests
+3. Confirm error rate returns to baseline in DataDog
+4. Notify on-call and post update in #incidents
+All rollbacks must be documented in the incident ticket.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. OBSERVABILITY & ALERTING
+
+4.1 DataDog Dashboards
+Service health dashboards: datadog.nexova.internal/dashboards/services
+Infrastructure dashboard: datadog.nexova.internal/dashboards/infra
+Each service must have: error rate, p50/p95/p99 latency, throughput, and saturation (CPU/memory) tracked.
+
+4.2 Alert Thresholds (Default)
+Error rate > 1% for 5 minutes: SEV3 alert.
+Error rate > 5% for 2 minutes: SEV2 alert (pages on-call).
+p99 latency > 2x baseline for 10 minutes: SEV3 alert.
+Service unavailable (health check failing): SEV1 alert (immediate page).
+
+4.3 Logging Standards
+All services must emit structured JSON logs. Required log fields: timestamp, service_name, request_id, user_id (hashed), environment, severity. PII must never appear in logs. Log retention: 30 days in DataDog, 90 days in S3 cold storage.
+
+4.4 Distributed Tracing
+All microservices must instrument AWS X-Ray tracing. Trace sampling rate: 5% in production, 100% in staging. Traces are retained for 30 days. Use traces to diagnose latency issues before escalating to the Platform team.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. ENVIRONMENT GUIDE
+
+5.1 Development
+URL: dev.nexova.internal
+Purpose: Individual feature development and testing.
+Data: Synthetic data only. No customer data permitted.
+Deployments: Automatic on PR branch push.
+
+5.2 Staging
+URL: staging.nexova.internal
+Purpose: Integration testing, QA, pre-production validation.
+Data: Anonymized production data snapshot (refreshed weekly).
+Deployments: Automatic on merge to main.
+
+5.3 Production
+URL: app.nexova.com (customer-facing)
+Purpose: Live customer traffic.
+Data: Real customer data. Strict access controls apply.
+Deployments: Controlled via CI/CD pipeline only. No manual deployments.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTACT
+Engineering Platform Team: #eng-platform (Slack)
+On-Call: PagerDuty — nexova.pagerduty.com
+Incident Bridge: incident.nexova.internal
+Security Issues: security@nexova.internal
+Document Owner: VP of Engineering | Last Updated: January 28, 2025

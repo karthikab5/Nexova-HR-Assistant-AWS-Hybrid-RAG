@@ -1,0 +1,114 @@
+NEXOVA TECHNOLOGIES INC.
+INTERNAL PRODUCT FAQ & KNOWLEDGE BASE
+Nexova Platform — Common Questions & Answers
+Support & Customer Success Team | v2.4 | March 2025
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION A: ACCOUNT & BILLING
+
+Q: How do I reset a customer's password?
+A: Passwords can only be reset by the customer via the self-service portal at app.nexova.com/forgot-password. Customer Success Managers (CSMs) do not have access to customer passwords. If the customer is locked out and unable to reset via email, escalate to Support Tier 2 who can trigger an admin password reset via the internal admin console at admin.nexova.internal.
+
+Q: A customer wants to upgrade their plan mid-cycle. How is billing handled?
+A: Mid-cycle upgrades are prorated automatically by the billing system (Stripe). The customer is charged immediately for the prorated difference. The new plan limits take effect immediately. Downgrades take effect at the next billing cycle. For enterprise contracts, all plan changes must go through the customer's Account Executive and require a contract amendment.
+
+Q: How do I add a new user seat to a customer's account?
+A: CSMs can add seats via the Admin Console: admin.nexova.internal → Customers → [Customer Name] → Seats → Add Seats. Note: Adding seats above the contracted limit triggers a billing event. Always confirm with the customer before adding seats that will result in overage charges.
+
+Q: What is Nexova's uptime SLA?
+A: Nexova Platform guarantees 99.9% monthly uptime (approximately 43 minutes of downtime per month). Nexova Insights and Nexova Shield each carry a 99.5% SLA. Enterprise customers on the Platinum tier receive a 99.95% SLA with financial remedies (service credits) for breaches. SLA calculation excludes scheduled maintenance windows, which are announced at least 7 days in advance.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION B: TECHNICAL PRODUCT QUESTIONS
+
+Q: What is the maximum file size for document uploads to Nexova Platform?
+A: The maximum file size per upload is 500 MB. The maximum total storage per workspace is determined by plan: Starter: 10 GB, Growth: 100 GB, Enterprise: Unlimited (subject to fair use). Supported file types include PDF, DOCX, XLSX, CSV, TXT, JSON, PNG, JPEG, and MP4.
+
+Q: Does Nexova support Single Sign-On (SSO)?
+A: Yes. Nexova supports SAML 2.0 and OIDC for SSO. SSO is available on the Growth plan and above. Supported identity providers include Okta, Azure AD, Google Workspace, OneLogin, and Ping Identity. SSO configuration is available in Workspace Settings → Security → Single Sign-On. For enterprise SAML configuration, customers should work with their CSM and our implementation team.
+
+Q: What API rate limits does Nexova enforce?
+A: API rate limits vary by plan:
+- Starter: 100 requests/minute, 10,000 requests/day
+- Growth: 500 requests/minute, 100,000 requests/day
+- Enterprise: 2,000 requests/minute, custom daily limits
+Rate limit headers (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset) are included in all API responses. Customers hitting rate limits consistently should contact their CSM about plan upgrades.
+
+Q: Does Nexova support webhooks?
+A: Yes. Nexova supports outbound webhooks for key platform events including: workflow completion, error events, new integration triggers, and billing events. Webhooks are configured in Workspace Settings → Integrations → Webhooks. Nexova sends webhook payloads with HMAC-SHA256 signatures for verification. Webhook retry policy: 3 retries with exponential backoff (1 min, 5 min, 30 min).
+
+Q: What regions is Nexova's data stored in?
+A: By default, customer data is stored in US East (us-east-1, N. Virginia). Enterprise customers can opt for EU data residency (eu-west-1, Ireland) or APAC data residency (ap-southeast-1, Singapore). Data residency options must be configured at account creation time. Changing data residency for an existing account requires a migration — contact your CSM to initiate. All data is encrypted at rest using AES-256 and in transit using TLS 1.3.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION C: INTEGRATIONS
+
+Q: Which integrations does Nexova Connect support?
+A: Nexova Connect offers 400+ pre-built integrations. The most popular categories include:
+- CRM: Salesforce, HubSpot, Pipedrive, Zoho CRM
+- Communication: Slack, Microsoft Teams, Gmail, Outlook
+- Project Management: Jira, Asana, Monday.com, Linear
+- Cloud Storage: AWS S3, Google Drive, Dropbox, OneDrive, SharePoint
+- Databases: PostgreSQL, MySQL, MongoDB, Snowflake, BigQuery
+- Payment: Stripe, Braintree, Adyen
+Full integration catalog: docs.nexova.com/integrations
+
+Q: How long does it take to set up a custom integration?
+A: Custom integrations via Nexova's REST API or SDK typically take 2–4 hours for standard use cases. For custom connectors built using the Nexova Connector SDK, the typical development time is 1–3 days depending on complexity. Nexova's Professional Services team offers custom integration development for enterprise customers. Contact your CSM to scope a Professional Services engagement.
+
+Q: A customer's Salesforce integration stopped syncing. What are the troubleshooting steps?
+A: Follow this diagnostic sequence:
+1. Check the integration status in Admin Console → [Workspace] → Integrations → Salesforce.
+2. Review recent sync logs for error messages. Common causes: expired OAuth tokens, changed Salesforce field mappings, Salesforce API limits hit.
+3. If OAuth token expired: ask the customer to re-authenticate by clicking "Reconnect" in Nexova Platform → Integrations → Salesforce.
+4. If field mapping errors: the customer's Salesforce admin may have renamed or deleted fields. Review and remap in Nexova's field mapping UI.
+5. If Salesforce API limits hit: check the customer's Salesforce API usage in their Salesforce org (Setup → System Overview). This resolves automatically when limits reset (midnight PST).
+6. If unresolved after above steps, escalate to Support Tier 2 with the workspace ID and sync log export.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION D: SECURITY & COMPLIANCE
+
+Q: Is Nexova SOC 2 Type II certified?
+A: Yes. Nexova maintains SOC 2 Type II certification covering Security, Availability, and Confidentiality trust service criteria. The most recent audit was completed in September 2024, covering the period October 2023 – September 2024. The SOC 2 report is available to customers under NDA — request via your CSM or security@nexova.com.
+
+Q: Is Nexova HIPAA compliant?
+A: Nexova can support HIPAA-covered workloads for customers who require it. HIPAA compliance requires: (1) Enterprise plan or above, (2) a signed Business Associate Agreement (BAA), (3) enabling HIPAA mode in workspace settings, which activates enhanced audit logging, restricted data retention, and enforces additional access controls. Contact your CSM to initiate a BAA and enable HIPAA mode.
+
+Q: Does Nexova conduct penetration testing?
+A: Nexova conducts annual third-party penetration tests on all production systems. The most recent pentest was conducted by Cobalt Security in November 2024. A summary of findings and remediation status is available to enterprise customers under NDA. Nexova also runs a private bug bounty program — qualified security researchers can apply via security@nexova.com.
+
+Q: Can customers run their own penetration tests on Nexova?
+A: Customers may conduct security assessments of their own Nexova workspace with prior written approval from Nexova Security. Submit a penetration test request at least 15 business days in advance to security@nexova.com with the test scope, methodology, IP ranges, and target dates. Unauthorized testing is a violation of the Terms of Service.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECTION E: ESCALATION & SUPPORT
+
+Q: What are the support tiers and SLAs?
+A:
+Tier 1 — Customer Self-Service: Docs, knowledge base, community forum. No SLA.
+Tier 2 — Technical Support:
+  - Starter plan: Email only, 2 business day response
+  - Growth plan: Email + chat, 8 business hour response
+  - Enterprise plan: Email, chat, phone, 2 business hour response for P1
+Tier 3 — Engineering Escalation: Complex bugs requiring code changes. SLA per severity (see engineering runbook).
+
+Q: How do I escalate a support ticket?
+A: To escalate a ticket:
+1. Reply to the ticket with the word [ESCALATE] in your message
+2. State the business impact clearly (e.g., "Customer cannot process payroll due to this bug — urgent")
+3. Tag the customer's CSM in the ticket
+4. For P1 (customer fully blocked): call the support hotline at +1-800-NEXOVA-1
+The ticket will be automatically flagged for supervisor review and assigned to a senior support engineer within 2 hours.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTACT
+Customer Support: support@nexova.com | +1-800-NEXOVA-1
+Support Portal: support.nexova.com
+Internal Support Tools: admin.nexova.internal
+Document Owner: VP of Customer Success | Last Updated: March 1, 2025

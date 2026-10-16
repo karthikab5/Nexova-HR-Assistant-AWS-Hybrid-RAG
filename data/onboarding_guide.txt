@@ -1,0 +1,154 @@
+NEXOVA TECHNOLOGIES INC.
+NEW EMPLOYEE ONBOARDING GUIDE
+Your First 30 Days at Nexova
+People & Culture Team | Welcome!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WELCOME TO NEXOVA
+
+We are thrilled to have you join us. Nexova Technologies builds AI-powered infrastructure tools used by over 8,000 enterprise customers worldwide. Our mission is to make intelligent automation accessible to every engineering team. This guide will help you get up to speed in your first 30 days. Don't hesitate to ask questions — everyone here remembers what it was like to be new.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DAY 1 CHECKLIST
+
+□ Pick up your laptop and badge from reception (Building A, Lobby)
+□ Complete IT setup with your onboarding buddy (see Section 2)
+□ Log in to Okta: sso.nexova.internal (credentials emailed to personal address)
+□ Set up Slack and join #general, #new-employees, and your team channel
+□ Complete required compliance training in Workday (due by end of week 1)
+□ Meet with your manager for 30-minute welcome check-in
+□ Attend New Employee Orientation at 2:00 PM (Zoom link in calendar invite)
+□ Set up 1:1s with your immediate team members for Week 1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. COMPANY OVERVIEW
+
+1.1 Our Products
+Nexova Platform: Core AI orchestration platform, used for automating workflows.
+Nexova Insights: Real-time analytics and monitoring layer.
+Nexova Shield: Security and compliance automation suite.
+Nexova Connect: Integration marketplace with 400+ connectors.
+
+1.2 Key Teams
+Engineering: Product development across 4 product pillars (Platform, Insights, Shield, Connect).
+Product: Product management, design, and research.
+Go-To-Market: Sales, customer success, marketing, partnerships.
+G&A: Finance, legal, people, IT, security.
+
+1.3 Company Values
+Build with Craft: We care deeply about quality in everything we ship and write.
+Customer Obsession: We succeed when our customers succeed.
+Radical Transparency: We share context freely and assume good intent.
+Move with Urgency: We bias toward action and learn by doing.
+Belong Here: We build a workplace where everyone can do their best work.
+
+1.4 Key Numbers (FY2024)
+Founded: 2017 | Headquarters: Austin, TX
+Employees: ~1,400 globally
+Customers: 8,200+
+Annual Recurring Revenue: $210M
+Offices: Austin (HQ), New York, London, Singapore, Bangalore
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. TECHNOLOGY SETUP
+
+2.1 Your Accounts (Auto-Provisioned)
+The following accounts are created before your start date and accessible via Okta SSO:
+- Google Workspace (Gmail, Drive, Docs, Calendar)
+- Slack
+- Jira & Confluence (project management & documentation)
+- Workday (HR, payroll, time off)
+- Expensify (expense reporting)
+- Zoom
+- 1Password (password manager — install on all devices)
+
+Engineering roles additionally receive: GitHub, AWS SSO, DataDog, PagerDuty.
+
+2.2 Setting Up Your Laptop
+Full setup guide: kb.nexova.internal/laptop-setup
+IT Onboarding Buddy will walk you through: FileVault encryption, Tailscale VPN, YubiKey setup, and MDM enrollment. This takes approximately 2 hours on Day 1. If your buddy is not available, contact helpdesk.nexova.internal.
+
+2.3 Key Internal URLs
+- Employee portal: portal.nexova.internal
+- IT help + knowledge base: kb.nexova.internal
+- HR & benefits: workday.nexova.internal
+- Expense reporting: expensify.nexova.internal
+- Engineering docs: confluence.nexova.internal
+- Company handbook (full): handbook.nexova.internal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. BENEFITS ENROLLMENT
+
+3.1 Enrollment Deadline
+You have 30 days from your start date to enroll in benefits. If you miss this window, you must wait until the next open enrollment period (November) unless you have a qualifying life event.
+
+3.2 Health Insurance
+Log in to workday.nexova.internal → Benefits → Enroll. Choose from Basic, Plus, or Family tiers. Coverage begins on your first day of employment. Review plan comparisons at portal.nexova.internal/benefits.
+
+3.3 401(k) Enrollment
+Nexova's 401(k) is administered by Fidelity. Set up contributions at netbenefits.fidelity.com (Nexova plan code: NXV2024). Nexova matches up to 4% of your base salary. Recommended: contribute at least 4% on Day 1 to maximize the match from your first paycheck.
+
+3.4 Other Benefits
+- Mental health: $100/month Wellbeing stipend (gym, therapy, meditation apps)
+- Learning & development: $2,000/year education stipend for courses, books, conferences
+- Commuter benefits: Pre-tax commuter account via WageWorks (office employees)
+- Employee stock purchase plan (ESPP): Enroll during first open enrollment
+- Life and disability insurance: Automatically enrolled, effective Day 1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. YOUR FIRST 30 DAYS
+
+Week 1: Orientation & Setup
+- Complete all Day 1 checklist items
+- Finish mandatory compliance training (Security Awareness, Code of Conduct, Privacy)
+- Meet every member of your immediate team (1:1 meetings)
+- Shadow at least one customer call or demo with your manager
+- Review your team's Confluence space and recent sprint notes
+
+Week 2: Learning & Context
+- Get access to and review the last 3 quarterly business reviews (QBRs)
+- Complete your role-specific onboarding track in Workday Learning
+- Attend all team stand-ups and sprint ceremonies
+- Set your 30/60/90 day goals with your manager in Lattice
+
+Week 3–4: Contributing
+- Take ownership of a starter task or project defined by your manager
+- Present a brief "what I've learned" to your team
+- Complete 360 intro survey in Lattice
+- Schedule 1:1 with your skip-level manager
+
+End of Month 1: Checkpoint
+Your manager will schedule a 30-day check-in to discuss your experience, answer questions, and confirm your 60/90-day plan. This is a two-way conversation — share honest feedback.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. IMPORTANT POLICIES (QUICK REFERENCE)
+
+Time Off: Unlimited PTO — request via Workday. Minimum 10 days/year encouraged.
+Working Hours: Core hours 10 AM–4 PM your team's time zone. Flexible otherwise.
+Remote Work: Up to 3 days/week for hybrid-eligible roles.
+Expenses: Submit via Expensify within 30 days. See Expense Policy for limits.
+Equipment Issues: Submit a ticket at helpdesk.nexova.internal.
+Security Incident: Report to security@nexova.internal and Ext. 9000 immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. WHO TO CONTACT
+
+Your Manager: First point of contact for role, team, and day-to-day questions.
+Your Onboarding Buddy: Peer assigned to help you navigate Nexova culture & tools.
+HR Business Partner: hr@nexova.internal for benefits, policies, personal matters.
+IT Helpdesk: helpdesk.nexova.internal for any tech setup issues.
+Facilities: facilities@nexova.internal for office access, parking, seating.
+Slack #new-employees: Peer community of all new hires — ask anything here!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+We are glad you are here. Welcome to the Nexova team!
+People & Culture Team | people@nexova.internal

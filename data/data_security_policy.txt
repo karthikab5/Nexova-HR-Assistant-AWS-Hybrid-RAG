@@ -1,0 +1,107 @@
+NEXOVA TECHNOLOGIES INC.
+DATA SECURITY & PRIVACY POLICY
+Version 5.0 | Effective: January 15, 2025
+Information Security Team | CONFIDENTIAL
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE & SCOPE
+
+This policy establishes requirements for protecting Nexova's data assets and customer information. It applies to all Nexova employees, contractors, interns, and third-party vendors with access to Nexova systems. Violations may result in disciplinary action, termination, and civil or criminal liability.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. DATA CLASSIFICATION
+
+2.1 Classification Levels
+
+PUBLIC: Information approved for public release. Examples: marketing materials, job postings, published blog posts. No special handling required.
+
+INTERNAL: Information for employee use only. Examples: company policies, org charts, internal announcements. Must not be shared with external parties without approval.
+
+CONFIDENTIAL: Sensitive business information. Examples: financial results, product roadmaps, customer contracts, source code. Requires encryption at rest and in transit. Access on a need-to-know basis.
+
+RESTRICTED: Highest sensitivity. Examples: personal health information (PHI), payment card data (PCI), employee SSNs, authentication credentials, security vulnerability details. Subject to strictest access controls, audit logging, and regulatory requirements.
+
+2.2 Handling Rules by Classification
+- PUBLIC: Share freely through approved channels.
+- INTERNAL: Nexova email, Slack, Google Drive only. Do not post in public forums.
+- CONFIDENTIAL: Encrypt when emailing externally. Use password-protected sharing links. Do not store on personal devices.
+- RESTRICTED: Access requires explicit authorization. All access is logged and audited. Must be encrypted at all times. Laptop must be locked when unattended.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. CUSTOMER DATA & PII
+
+3.1 Personal Identifiable Information (PII)
+PII includes: full name, email address, home address, phone number, date of birth, Social Security Number, government ID numbers, IP addresses, payment information, and any combination of data that could identify an individual.
+
+3.2 Handling Customer PII
+Customer PII must only be accessed for legitimate business purposes. PII must never be copied to personal devices, personal cloud storage, or external drives. PII must never be shared with third parties without a signed Data Processing Agreement (DPA). PII must be deleted per the data retention schedule when no longer needed.
+
+3.3 Data Retention Schedule
+Customer account data: Retained for the duration of the contract plus 3 years.
+Support tickets: Retained for 2 years after ticket closure.
+Application logs containing PII: 90 days.
+Financial records: 7 years (IRS requirement).
+Employee HR records: Duration of employment plus 7 years.
+
+3.4 GDPR & CCPA Compliance
+Nexova is subject to GDPR (EU customers) and CCPA (California customers). Customer requests to access, correct, or delete their data must be forwarded to privacy@nexova.internal within 24 hours. Legal and the Privacy team will respond to the customer within regulatory deadlines (30 days for GDPR, 45 days for CCPA).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. ACCESS CONTROL
+
+4.1 Least Privilege
+All system access follows the principle of least privilege — employees receive only the minimum permissions required for their role. Access is reviewed quarterly by IT and team managers. Unused access is automatically revoked after 90 days of inactivity.
+
+4.2 Privileged Access
+Production system access (admin rights, database access, AWS root) requires additional approval and must use just-in-time (JIT) access provisioning via Nexova's PAM tool. Privileged sessions are recorded and retained for 1 year. Sharing privileged credentials is strictly prohibited.
+
+4.3 Third-Party Access
+Vendor access to Nexova systems requires a signed vendor security agreement. Vendor access is scoped to the minimum required and reviewed at contract renewal. All vendor access is terminated within 24 hours of contract end.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. ENCRYPTION STANDARDS
+
+5.1 Data at Rest
+All databases and storage systems containing Confidential or Restricted data must use AES-256 encryption. AWS S3 buckets containing company data must have S3 Server-Side Encryption (SSE-S3 or SSE-KMS) enabled. Laptop full-disk encryption is mandatory (FileVault for Mac, BitLocker for Windows).
+
+5.2 Data in Transit
+All data in transit must use TLS 1.2 or higher. Unencrypted protocols (HTTP, FTP, Telnet) are prohibited on company networks. API endpoints must enforce HTTPS with HSTS enabled.
+
+5.3 Key Management
+Encryption keys are managed via AWS KMS. Key rotation is automatic and occurs annually. Access to key management is restricted to the Security team and audited monthly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. INCIDENT RESPONSE & BREACH NOTIFICATION
+
+6.1 Suspected Data Breach
+Report immediately to security@nexova.internal and call Ext. 9000. Do not attempt to contain the breach yourself. Preserve all logs and system state. The Security team will initiate the Incident Response Plan within 30 minutes of notification.
+
+6.2 Breach Notification Requirements
+GDPR: Nexova must notify relevant supervisory authorities within 72 hours of becoming aware of a breach affecting EU residents. CCPA: Notification to affected California residents is required in the most expedient time possible. Nexova's Legal and Communications teams lead all external notifications.
+
+6.3 Post-Incident Review
+A post-incident review (PIR) is required within 5 business days of incident resolution. PIR findings are reviewed by the CISO and shared with the executive team. Remediation actions are tracked in Jira Security and reviewed monthly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. ACCEPTABLE USE
+
+7.1 Company Systems
+Company systems and data must not be used for personal business, illegal activities, or activities that compete with Nexova. Employees must not attempt to circumvent security controls, access systems outside their authorization, or use tools to extract data in bulk without IT approval.
+
+7.2 AI & LLM Tools
+Confidential or Restricted data must never be submitted to external AI/LLM tools (ChatGPT, Claude.ai, Gemini, etc.) unless the tool is on the approved enterprise AI list at kb.nexova.internal/ai-tools. Internal AI tools built on approved enterprise APIs with signed DPAs are permitted. Source code classified as Confidential must not be shared with AI coding tools unless using Nexova's internal GitHub Copilot Enterprise instance.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTACT
+Security Team: security@nexova.internal | Ext. 9000 (24/7 emergencies)
+Privacy Team: privacy@nexova.internal
+Policy Owner: Chief Information Security Officer (CISO)
+Last Reviewed: January 10, 2025 | Next Review: January 2026

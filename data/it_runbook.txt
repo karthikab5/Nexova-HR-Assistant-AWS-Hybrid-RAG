@@ -1,0 +1,110 @@
+NEXOVA TECHNOLOGIES INC.
+IT OPERATIONS RUNBOOK & SUPPORT GUIDE
+Version 2.8 | Maintained by: IT Operations Team
+Internal Use Only — Do Not Distribute
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. GETTING HELP FROM IT
+
+1.1 Support Channels
+- Urgent (system down, security incident): Call the IT Hotline at Ext. 9000 (24/7)
+- High priority (can't work): Submit a ticket via helpdesk.nexova.internal and Slack @it-oncall
+- Normal requests (software, access, hardware): Submit via helpdesk.nexova.internal
+- Questions & self-service: IT Knowledge Base at kb.nexova.internal
+
+1.2 Ticket Priority Levels
+P1 — Critical: Production system down, data breach suspected. Response: 15 minutes.
+P2 — High: Key system degraded, team blocked. Response: 2 hours.
+P3 — Medium: Individual productivity impacted. Response: 8 business hours.
+P4 — Low: General requests, questions, enhancements. Response: 3 business days.
+
+1.3 SLA Expectations
+IT aims to resolve P3 tickets within 24 business hours and P4 tickets within 5 business days. If your ticket has not been updated within the SLA window, escalate by replying to the ticket and adding the tag [ESCALATE].
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. EQUIPMENT & PROVISIONING
+
+2.1 Standard Hardware Allocation
+All full-time employees receive the following on their first day:
+- MacBook Pro 14" (M3 Pro) or Dell XPS 15 (Windows) — based on role
+- External monitor (27" 4K) for office-based employees
+- USB-C hub, keyboard, and mouse
+- Logitech headset for remote/hybrid employees
+- YubiKey hardware token for MFA
+
+2.2 Requesting Additional Equipment
+Submit a hardware request via helpdesk.nexova.internal at least 10 business days before the need date. Requests over $500 require manager approval. Requests over $2,000 require VP approval. Standard fulfillment time is 5–7 business days for in-stock items.
+
+2.3 Personal Device Policy (BYOD)
+Personal devices may access company email and Slack only via approved MDM-enrolled configurations. Personal devices must never be used to store or process confidential company data. Personal devices used for work must have full-disk encryption and a screen lock timeout of 5 minutes or less.
+
+2.4 Equipment Repair & Replacement
+Accidental damage: Submit a ticket with photos. IT will assess repair vs. replacement. Manufacturer defects are covered under warranty — IT will manage the RMA process. Lost or stolen devices must be reported to IT and Security within 1 hour of discovery.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. ACCOUNTS & ACCESS MANAGEMENT
+
+3.1 Account Provisioning
+New employee accounts are created 48 hours before the start date based on the approved onboarding ticket from HR. Standard accounts include: email (Google Workspace), Slack, Jira, Confluence, GitHub (for engineering roles), and AWS SSO. Access to additional systems requires manager approval via an access request ticket.
+
+3.2 Password Policy
+Passwords must be at least 16 characters. Passwords must include uppercase, lowercase, numbers, and special characters. Passwords must be changed every 180 days. Password reuse is prohibited for the last 10 passwords. All employees must use Nexova's approved password manager: 1Password (licenses provisioned by IT).
+
+3.3 Multi-Factor Authentication (MFA)
+MFA is mandatory for all company accounts. Approved MFA methods: YubiKey hardware token (preferred), Okta Verify app, or Google Authenticator. SMS-based MFA is not permitted due to SIM-swap vulnerability. Loss of MFA device must be reported to IT immediately.
+
+3.4 Offboarding Access Revocation
+When an employee separation is confirmed by HR, IT will revoke all system access within 2 hours of the employee's last day. Email forwarding will be enabled for 30 days to their manager. IT will retain a copy of the employee's Google Drive and email for 90 days before deletion.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. NETWORK & CONNECTIVITY
+
+4.1 Office Wi-Fi
+Corporate network: NexovaCorp (WPA3, requires device certificate)
+Guest network: NexovaGuest (for personal devices and visitors — no corporate resources accessible)
+VPN is required when accessing internal systems from outside the office network.
+
+4.2 VPN
+Nexova uses Tailscale for zero-trust network access. VPN client is pre-installed on all company devices. Employees must connect to VPN before accessing any internal system (*.nexova.internal). VPN split tunneling is enabled — only internal traffic routes through the VPN.
+
+4.3 Home Internet Stipend
+Remote employees receive a $75/month home internet stipend. Submit receipts via Expensify under the category "Remote Work — Internet." The stipend is capped at actual internet costs or $75, whichever is lower.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. SOFTWARE & LICENSES
+
+5.1 Approved Software List
+All software installed on company devices must be on the IT-approved software list at kb.nexova.internal/approved-software. Employees must not install unapproved software on company devices. Unapproved software requests must be submitted via the software request form and will be reviewed within 5 business days.
+
+5.2 SaaS Tool Procurement
+New SaaS subscriptions must be reviewed by IT (security review) and Finance (budget approval) before purchase. The minimum review period is 10 business days. Employees must not use personal credit cards to purchase SaaS tools on behalf of the company without prior approval.
+
+5.3 AI Tools Policy
+Use of external AI tools (ChatGPT, Copilot, Gemini, etc.) on company devices is permitted for general productivity tasks. Employees must never input confidential data, customer PII, or proprietary source code into external AI tools. Nexova-approved AI tools with enterprise data processing agreements are listed at kb.nexova.internal/ai-tools.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. INCIDENT RESPONSE
+
+6.1 Reporting a Security Incident
+Any suspected security incident (phishing, malware, unauthorized access, data loss) must be reported immediately to security@nexova.internal and IT Hotline Ext. 9000. Do not attempt to investigate or remediate the incident yourself. Preserve all evidence — do not reboot or wipe the affected device.
+
+6.2 Phishing
+If you receive a suspicious email, do not click any links or download attachments. Use the "Report Phishing" button in Gmail to flag the email. IT Security will investigate reported phishing emails within 4 business hours. Employees who fall victim to phishing must immediately notify IT and change all passwords.
+
+6.3 Lost or Stolen Devices
+Report to IT within 1 hour: helpdesk ticket + Ext. 9000. IT will remotely wipe the device via MDM. File a police report if theft is suspected — IT will request the report number for insurance purposes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTACT
+IT Helpdesk: helpdesk.nexova.internal
+IT Hotline (urgent): Ext. 9000
+Security Team: security@nexova.internal
+Slack: #it-support | #it-oncall (urgent only)
+Document Owner: VP of IT Operations | Last Updated: February 3, 2025
